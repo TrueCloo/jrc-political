@@ -16,9 +16,18 @@
     "consult_title": "Your free consultation",
     "consult_subtitle": "A 30-minute call, no commitment.",
     "consult_items": [
-      { "title": "Your race", "text": "Office, district, and timeline" },
-      { "title": "Where you stand", "text": "What's working and what isn't" },
-      { "title": "Next steps", "text": "An honest take on what it will take to win" }
+      {
+        "title": "Your race",
+        "text": "Office, district, and timeline"
+      },
+      {
+        "title": "Where you stand",
+        "text": "What's working and what isn't"
+      },
+      {
+        "title": "Next steps",
+        "text": "An honest take on what it will take to win"
+      }
     ],
     "consult_link": "Request a call"
   },
@@ -29,12 +38,20 @@
       "eyebrow": "About",
       "name": "Joanna Cattanach",
       "role": "Founder & Principal Consultant",
-      "photo": "",
-      "body": "<p>[Opening line about Joanna: where she's from and what drew her to politics.]</p><p>Every campaign is different, but the ones that win share the same things: a candidate who knows why they're running, a message that fits the district, and a plan the whole team can follow. Joanna works side by side with her clients to build all three.</p><p>[One or two sentences on her experience: races worked, roles held, or results she's proud of.]</p>",
+      "body": "Every campaign is different, but the ones that win share the same things: a candidate who knows why they're running, a message that fits the district, and a plan the whole team can follow. Joanna works side by side with her clients to build all three.\n\n[One or two sentences on her experience: races worked, roles held, or results she's proud of.]",
       "facts": [
-        { "value": "[00]", "label": "Years in politics" },
-        { "value": "[00]", "label": "Campaigns advised" },
-        { "value": "[Region]", "label": "Home base" }
+        {
+          "value": "[00]",
+          "label": "Years in politics"
+        },
+        {
+          "value": "[00]",
+          "label": "Campaigns advised"
+        },
+        {
+          "value": "[Region]",
+          "label": "Home base"
+        }
       ]
     },
     {
@@ -47,22 +64,38 @@
         {
           "title": "Campaign Strategy",
           "text": "A written plan built around your district, your voters, and your path to the number you need.",
-          "points": ["Race and district analysis", "Vote goal and targeting", "Budget and timeline"]
+          "points": [
+            "Race and district analysis",
+            "Vote goal and targeting",
+            "Budget and timeline"
+          ]
         },
         {
           "title": "Messaging & Media",
           "text": "A clear story about why you're running, told the same way on doors, in mail, online, and in interviews.",
-          "points": ["Core message and talking points", "Press releases and media outreach", "Mail and digital content"]
+          "points": [
+            "Core message and talking points",
+            "Press releases and media outreach",
+            "Mail and digital content"
+          ]
         },
         {
           "title": "Candidate Coaching",
           "text": "Preparation for the moments that decide races: debates, forums, endorsement interviews, and tough questions.",
-          "points": ["Debate and forum prep", "Interview and media training", "Stump speech development"]
+          "points": [
+            "Debate and forum prep",
+            "Interview and media training",
+            "Stump speech development"
+          ]
         },
         {
           "title": "Campaign Management",
           "text": "Hands-on support that keeps the plan moving week to week, so you can focus on meeting voters.",
-          "points": ["Field and volunteer planning", "Fundraising call time structure", "Weekly check-ins and tracking"]
+          "points": [
+            "Field and volunteer planning",
+            "Fundraising call time structure",
+            "Weekly check-ins and tracking"
+          ]
         }
       ]
     },
@@ -73,9 +106,18 @@
       "heading": "How we'll work together",
       "intro": "A simple process, so you always know what's happening and what comes next.",
       "steps": [
-        { "title": "Listen", "text": "We start with a free consultation about you, your race, and your goals. I ask a lot of questions." },
-        { "title": "Plan", "text": "I put together a strategy with clear priorities, a timeline, and the numbers you need to hit." },
-        { "title": "Execute", "text": "We put the plan to work and adjust as the race changes, with regular check-ins until Election Day." }
+        {
+          "title": "Listen",
+          "text": "We start with a free consultation about you, your race, and your goals. I ask a lot of questions."
+        },
+        {
+          "title": "Plan",
+          "text": "I put together a strategy with clear priorities, a timeline, and the numbers you need to hit."
+        },
+        {
+          "title": "Execute",
+          "text": "We put the plan to work and adjust as the race changes, with regular check-ins until Election Day."
+        }
       ]
     },
     {
@@ -90,7 +132,12 @@
       "eyebrow": "Contact",
       "heading": "Let's talk about your race.",
       "intro": "Tell me a little about your campaign and I'll follow up to set up a free consultation.",
-      "topics": ["Running for office", "A ballot measure", "An advocacy group", "Something else"],
+      "topics": [
+        "Running for office",
+        "A ballot measure",
+        "An advocacy group",
+        "Something else"
+      ],
       "button": "Send message"
     }
   ]
