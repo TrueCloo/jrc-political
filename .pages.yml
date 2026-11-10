@@ -1,0 +1,139 @@
+# Pages CMS configuration: https://pagescms.org/docs/configuration/
+# Joanna edits copy and photos here; layout, fonts and colors stay in code.
+
+media:
+  input: src/images
+  output: /images
+
+content:
+  - name: home
+    label: Home page
+    type: file
+    path: src/_data/home.json
+    format: json
+    fields:
+      - name: hero
+        label: Top banner
+        type: object
+        fields:
+          - { name: eyebrow, label: Small label above headline, type: string }
+          - { name: headline, label: Headline, type: string, required: true }
+          - { name: lede, label: Intro paragraph, type: text }
+          - { name: primary_button, label: Main button text (goes to Contact), type: string }
+          - { name: secondary_button, label: Second button text (goes to Services), type: string }
+          - { name: audience_label, label: "\"Who I work with\" label", type: string }
+          - { name: audience, label: Who I work with, type: string, list: true }
+          - { name: show_consult_box, label: Show the consultation box, type: boolean }
+          - { name: consult_title, label: Consultation box title, type: string }
+          - { name: consult_subtitle, label: Consultation box subtitle, type: string }
+          - name: consult_items
+            label: Consultation box steps
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{title}"
+            fields:
+              - { name: title, label: Title, type: string }
+              - { name: text, label: Text, type: string }
+          - { name: consult_link, label: Consultation box link text, type: string }
+
+      - name: sections
+        label: Page sections (drag to reorder, add or remove)
+        type: block
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{type}: {nav_label}{heading}{name}"
+        blockKey: type
+        blocks:
+          - name: about
+            label: About (with headshot)
+            fields:
+              - { name: nav_label, label: Menu label (leave blank to hide from menu), type: string }
+              - { name: eyebrow, label: Small label, type: string }
+              - { name: name, label: Name, type: string }
+              - { name: role, label: Title / role, type: string }
+              - { name: photo, label: Headshot (vertical photo works best), type: image }
+              - { name: body, label: Bio, type: rich-text }
+              - name: facts
+                label: Quick facts
+                type: object
+                list: true
+                fields:
+                  - { name: value, label: Number or short value, type: string }
+                  - { name: label, label: Label, type: string }
+
+          - name: cards
+            label: Cards (e.g. Services)
+            fields:
+              - { name: nav_label, label: Menu label (leave blank to hide from menu), type: string }
+              - { name: eyebrow, label: Small label, type: string }
+              - { name: heading, label: Heading, type: string }
+              - { name: intro, label: Intro paragraph, type: text }
+              - name: cards
+                label: Cards
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: "{title}"
+                fields:
+                  - { name: title, label: Title, type: string }
+                  - { name: text, label: Description, type: text }
+                  - { name: points, label: Bullet points, type: string, list: true }
+
+          - name: steps
+            label: Numbered steps (e.g. Approach)
+            fields:
+              - { name: nav_label, label: Menu label (leave blank to hide from menu), type: string }
+              - { name: eyebrow, label: Small label, type: string }
+              - { name: heading, label: Heading, type: string }
+              - { name: intro, label: Intro paragraph, type: text }
+              - name: steps
+                label: Steps
+                type: object
+                list: true
+                fields:
+                  - { name: title, label: Title, type: string }
+                  - { name: text, label: Text, type: text }
+
+          - name: quote
+            label: Client quote
+            fields:
+              - { name: quote, label: Quote, type: text }
+              - { name: name, label: Person's name, type: string }
+              - { name: title, label: Their title or campaign, type: string }
+
+          - name: text
+            label: Text section (headline + paragraphs)
+            fields:
+              - { name: nav_label, label: Menu label (leave blank to hide from menu), type: string }
+              - { name: eyebrow, label: Small label, type: string }
+              - { name: heading, label: Heading, type: string }
+              - { name: body, label: Text, type: rich-text }
+              - { name: shaded, label: Light gray background, type: boolean }
+
+          - name: contact
+            label: Contact form
+            fields:
+              - { name: nav_label, label: Menu label, type: string }
+              - { name: eyebrow, label: Small label, type: string }
+              - { name: heading, label: Heading, type: string }
+              - { name: intro, label: Intro paragraph, type: text }
+              - { name: topics, label: "\"I'm reaching out about\" options", type: string, list: true }
+              - { name: button, label: Button text, type: string }
+
+  - name: settings
+    label: Site settings
+    type: file
+    path: src/_data/settings.json
+    format: json
+    fields:
+      - { name: site_title, label: Site title (browser tab), type: string }
+      - { name: description, label: Search engine description, type: text }
+      - { name: header_button, label: Header button text, type: string }
+      - { name: email, label: Contact email, type: string }
+      - { name: phone, label: Contact phone, type: string }
+      - { name: form_endpoint, label: Form endpoint URL (from Formspree; Alec sets this), type: string }
+      - { name: footer_text, label: Footer text, type: string }

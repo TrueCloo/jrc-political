@@ -1,0 +1,207 @@
+---
+permalink: /index.html
+---
+{%- set hero = home.hero -%}
+{%- set contactId = home.sections | firstSectionId("contact") -%}
+{%- set servicesId = home.sections | firstSectionId("cards") -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ settings.site_title }}</title>
+<meta name="description" content="{{ settings.description }}">
+<meta property="og:title" content="{{ settings.site_title }}">
+<meta property="og:description" content="{{ settings.description }}">
+<meta property="og:image" content="/images/logo-navy.png">
+<link rel="icon" href="/images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="{{ settings.site_title }} home"><img src="/images/logo-white.png" alt="{{ settings.site_title }}" width="480" height="211"></a>
+    <nav class="nav" aria-label="Main">
+      {%- for s in home.sections %}{% if s.nav_label and s.type != "contact" %}
+      <a href="#{{ s | sectionId(loop.index) }}">{{ s.nav_label }}</a>
+      {%- endif %}{% endfor %}
+      {%- if contactId %}
+      <a class="btn btn-accent" href="#{{ contactId }}">{{ settings.header_button }}</a>
+      {%- endif %}
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          {% if hero.eyebrow %}<p class="eyebrow">{{ hero.eyebrow }}</p>{% endif %}
+          <h1 id="hero-title">{{ hero.headline }}</h1>
+          {% if hero.lede %}<p class="lede">{{ hero.lede }}</p>{% endif %}
+          <div class="hero-actions">
+            {% if hero.primary_button and contactId %}<a class="btn btn-accent" href="#{{ contactId }}">{{ hero.primary_button }}</a>{% endif %}
+            {% if hero.secondary_button and servicesId %}<a class="btn btn-line" href="#{{ servicesId }}">{{ hero.secondary_button }}</a>{% endif %}
+          </div>
+        </div>
+        {% if hero.show_consult_box %}
+        <aside class="consult" aria-labelledby="consult-title">
+          <h2 id="consult-title">{{ hero.consult_title }}</h2>
+          {% if hero.consult_subtitle %}<p>{{ hero.consult_subtitle }}</p>{% endif %}
+          <ol>
+            {% for item in hero.consult_items %}<li><b>{{ item.title }}</b>{{ item.text }}</li>{% endfor %}
+          </ol>
+          {% if contactId and hero.consult_link %}<a class="consult-link" href="#{{ contactId }}">{{ hero.consult_link }} &rarr;</a>{% endif %}
+        </aside>
+        {% endif %}
+      </div>
+      {% if hero.audience and hero.audience.length %}
+      <div class="serves">
+        <b>{{ hero.audience_label }}</b>
+        <ul>{% for a in hero.audience %}<li>{{ a }}</li>{% endfor %}</ul>
+      </div>
+      {% endif %}
+    </div>
+    <div class="hero-rule"></div>
+  </section>
+
+  {% for s in home.sections %}
+  {%- set id = s | sectionId(loop.index) -%}
+
+  {% if s.type == "about" %}
+  <section class="about" id="{{ id }}">
+    <div class="wrap">
+      <div class="portrait">
+        <div class="photo">
+          {% if s.photo %}<img src="{{ s.photo }}" alt="Photo of {{ s.name }}">
+          {% else %}<div><strong>JC</strong><span>Headshot goes here</span></div>{% endif %}
+        </div>
+      </div>
+      <div class="about-copy">
+        {% if s.eyebrow %}<p class="eyebrow">{{ s.eyebrow }}</p>{% endif %}
+        <h2>{{ s.name }}</h2>
+        {% if s.role %}<p class="role">{{ s.role }}</p>{% endif %}
+        <div class="rich">{{ s.body | safe }}</div>
+        {% if s.facts and s.facts.length %}
+        <ul class="facts">{% for f in s.facts %}<li><b>{{ f.value }}</b><span>{{ f.label }}</span></li>{% endfor %}</ul>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  {% elif s.type == "cards" %}
+  <section class="services" id="{{ id }}">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          {% if s.eyebrow %}<p class="eyebrow">{{ s.eyebrow }}</p>{% endif %}
+          <h2>{{ s.heading }}</h2>
+        </div>
+        {% if s.intro %}<p class="lede">{{ s.intro }}</p>{% endif %}
+      </div>
+      <div class="grid">
+        {% for c in s.cards %}
+        <article class="card">
+          <h3>{{ c.title }}</h3>
+          {% if c.text %}<p>{{ c.text }}</p>{% endif %}
+          {% if c.points and c.points.length %}<ul>{% for p in c.points %}<li>{{ p }}</li>{% endfor %}</ul>{% endif %}
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {% elif s.type == "steps" %}
+  <section class="process" id="{{ id }}">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          {% if s.eyebrow %}<p class="eyebrow">{{ s.eyebrow }}</p>{% endif %}
+          <h2>{{ s.heading }}</h2>
+        </div>
+        {% if s.intro %}<p class="lede">{{ s.intro }}</p>{% endif %}
+      </div>
+      <ol class="steps">
+        {% for st in s.steps %}<li><h3>{{ st.title }}</h3><p>{{ st.text }}</p></li>{% endfor %}
+      </ol>
+    </div>
+  </section>
+
+  {% elif s.type == "quote" %}
+  <section class="quote" id="{{ id }}" aria-label="Client testimonial">
+    <div class="wrap">
+      <figure>
+        <blockquote>{{ s.quote }}</blockquote>
+        {% if s.name %}<figcaption><b>{{ s.name }}</b>{% if s.title %}, {{ s.title }}{% endif %}</figcaption>{% endif %}
+      </figure>
+    </div>
+  </section>
+
+  {% elif s.type == "text" %}
+  <section class="text-section{% if s.shaded %} alt{% endif %}" id="{{ id }}">
+    <div class="wrap">
+      {% if s.eyebrow %}<p class="eyebrow">{{ s.eyebrow }}</p>{% endif %}
+      {% if s.heading %}<h2>{{ s.heading }}</h2>{% endif %}
+      <div class="body rich" style="margin-top:18px">{{ s.body | safe }}</div>
+    </div>
+  </section>
+
+  {% elif s.type == "contact" %}
+  <section class="contact" id="{{ id }}">
+    <div class="wrap">
+      <div>
+        {% if s.eyebrow %}<p class="eyebrow">{{ s.eyebrow }}</p>{% endif %}
+        <h2>{{ s.heading }}</h2>
+        {% if s.intro %}<p class="lede">{{ s.intro }}</p>{% endif %}
+        {% if settings.email or settings.phone %}
+        <ul class="direct">
+          {% if settings.email %}<li><span>Email</span><a href="mailto:{{ settings.email }}">{{ settings.email }}</a></li>{% endif %}
+          {% if settings.phone %}<li><span>Phone</span><a href="tel:{{ settings.phone | replace(' ', '') | replace('(', '') | replace(')', '') | replace('-', '') }}">{{ settings.phone }}</a></li>{% endif %}
+        </ul>
+        {% endif %}
+      </div>
+      <form {% if settings.form_endpoint %}action="{{ settings.form_endpoint }}" method="POST"{% endif %}>
+        <div class="row">
+          <label for="name">Name<input id="name" name="name" autocomplete="name" required></label>
+          <label for="email">Email<input id="email" name="email" type="email" autocomplete="email" required></label>
+        </div>
+        <div class="row">
+          <label for="phone">Phone (optional)<input id="phone" name="phone" type="tel" autocomplete="tel"></label>
+          <label for="topic">I'm reaching out about
+            <select id="topic" name="topic">{% for t in s.topics %}<option>{{ t }}</option>{% endfor %}</select>
+          </label>
+        </div>
+        <label for="message">Message<textarea id="message" name="message" required></textarea></label>
+        {# Spam trap: hidden from people, bots fill it in and Formspree discards the message #}
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        {% if settings.form_endpoint %}
+        <button class="btn btn-accent" type="submit">{{ s.button or "Send message" }}</button>
+        {% else %}
+        <button class="btn btn-accent" type="submit" disabled aria-disabled="true">{{ s.button or "Send message" }}</button>
+        <p class="form-off">The contact form isn't connected yet.{% if settings.email %} Please email <a href="mailto:{{ settings.email }}">{{ settings.email }}</a> for now.{% endif %}</p>
+        {% endif %}
+      </form>
+    </div>
+  </section>
+  {% endif %}
+  {% endfor %}
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Back to top"><img src="/images/logo-white-simple.png" alt="{{ settings.site_title }}" width="400" height="145"></a>
+    <nav aria-label="Footer">
+      {%- for s in home.sections %}{% if s.nav_label %}
+      <a href="#{{ s | sectionId(loop.index) }}">{{ s.nav_label }}</a>
+      {%- endif %}{% endfor %}
+    </nav>
+    <span>{{ settings.footer_text }}</span>
+  </div>
+</footer>
+</body>
+</html>
