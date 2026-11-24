@@ -1,15 +1,15 @@
 {
   "hero": {
-    "eyebrow": "Political strategy & campaign consulting",
+    "eyebrow": "Political strategy, communications and campaign consulting",
     "headline": "Campaigns that win start with a plan.",
-    "lede": "JRC Political helps candidates and causes build a clear strategy, a message voters remember, and a campaign that runs on schedule from launch to Election Day.",
+    "lede": "JRC Political helps candidates and elected officials build a clear strategy, a message voters remember, and a campaign that runs on schedule from launch to Election Day. We're there when you're running and there when you win!",
     "primary_button": "Book a free consultation",
     "secondary_button": "See services",
     "audience_label": "Who I work with",
     "audience": [
       "First-time candidates",
       "Incumbents",
-      "Ballot measures",
+      "Grassroots organizations",
       "Advocacy groups"
     ],
     "show_consult_box": true,
